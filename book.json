@@ -1,0 +1,26 @@
+{
+    "title" : "OpenCV 官方教程",
+    "author": "守着瓜的猹",
+    "description": "基于OpenCV 4.1.2版的官方教程中文版",
+    "language": "zh-hans",
+    "gitbook": "3.2.3",
+    "root": "./",
+    "links": {
+        "sidebar": {},
+        "sharing": {
+            "google": null,
+            "facebook": null,
+            "twitter": null,
+            "weibo": null,
+            "all": null
+        }
+    },
+    "plugins": ["katex"],
+
+    "pluginsConfig": {
+        "mathjax":{
+            "forceSVG": true
+        }
+    }
+}
+
