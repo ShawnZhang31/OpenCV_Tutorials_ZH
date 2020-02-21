@@ -41,9 +41,9 @@ $$
     - 将图像转化为灰度图像
     - 使用`cv::equalizeHist`均衡直方图
     - 显示结果
-- C++代码
-```c++
+- C++代码  
 
+```c++
 #include "opencv2/imgcodecs.hpp"
 #include "opencv2/highgui.hpp"
 #include "opencv2/imgproc.hpp"
@@ -69,7 +69,8 @@ int main( int argc, char** argv )
     return 0;
 }
 ```
-- Python
+- Python  
+
 ```python
 from __future__ import print_function
 import cv2 as cv
