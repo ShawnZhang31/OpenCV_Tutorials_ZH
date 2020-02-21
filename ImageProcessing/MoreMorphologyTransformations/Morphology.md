@@ -1,4 +1,4 @@
-# 其他的图像形态学运算
+# 其他的图像形态学运算(More Morphology Transformations)
 官方文档地址:https://docs.opencv.org/4.1.2/d3/dbe/tutorial_opening_closing_hats.html
 该文档不要讲述使用`cv::morphologyEx`进行一些除了erode和dilate之外的其他形态学运算：
 - Opening:开运算

@@ -15,12 +15,66 @@
             "all": null
         }
     },
-    "plugins": ["katex"],
+    "plugins": ["katex",
+        "tbfed-pagefooter",
+        "github",
+        "-lunr", "-search", "search-plus",
+        "local-video",
+        "donate",
+        "-sharing", "sharing-plus",
+        "code",
+        "back-to-top-button",
+        "expandable-chapters-small",
+        "insert-logo"],
 
     "pluginsConfig": {
         "mathjax":{
             "forceSVG": true
-        }
+        },
+        "tbfed-pagefooter":{
+            "copyright":"Copyright &copy 守着瓜的猹 2020",
+            "modify_label": "该文件修订时间：",
+            "modify_format": "YYYY-MM-DD HH:mm:ss"
+        },
+        "github": {
+            "url": "https://github.com/ShawnZhang31/OpenCV_Tutorials_ZH"
+        },
+        "donate": {
+            "wechat": "https://shawnzhang31.com/topic/opencvtutorial/res/donate_wechat.png",
+            "alipay": "https://shawnzhang31.com/topic/opencvtutorial/res/donate_alipay.png",
+            "title": "",
+            "button": "赏一杯咖啡喝吧",
+            "alipayText": "支付宝打赏",
+            "wechatText": "微信打赏"
+        },
+        "sharing": {
+            "douban": true,
+            "facebook": true,
+            "google": true,
+            "hatenaBookmark": false,
+            "instapaper": false,
+            "line": false,
+            "linkedin": false,
+            "messenger": false,
+            "pocket": false,
+            "qq": true,
+            "qzone": true,
+            "stumbleupon": false,
+            "twitter": false,
+            "viber": false,
+            "vk": false,
+            "weibo": true,
+            "whatsapp": false,
+            "all": [
+                "facebook", "google", "twitter",
+                "weibo", "instapaper", "linkedin",
+                "pocket", "stumbleupon"
+            ]
+        },
+        "insert-logo": {
+            "url": "https://shawnzhang31.com/topic/opencvtutorial/res/logo.png",
+            "style": "background: none; max-height: 30px; min-height: 30px"
+          }
     }
 }
 

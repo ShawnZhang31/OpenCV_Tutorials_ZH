@@ -1,4 +1,4 @@
-# 图像的腐蚀和膨胀运算
+# 图像的腐蚀和膨胀运算(Eroding and Dilating)
 官方文档地址:https://docs.opencv.org/4.1.2/d3/dbe/tutorial_opening_closing_hats.html
 图像的腐蚀(Erosion)和膨胀(Dialation)是图像最基本也是最常见的形态学运算，可是使用opencv的`cv::erode`和`cv::dialte`分别实现。
 
