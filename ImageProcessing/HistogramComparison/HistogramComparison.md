@@ -4,7 +4,7 @@
 - 学会使用不同的指标进行直方图对比
 
 ## 理论基础
-- 要对比两个直方图$H_1$和$H_2$，必须先选出来一个指标$d(H_1, H_2)$来描述两个直方图的匹配度
+- 要对比两个直方图 $$H_1$$ 和$$H_2$$，必须先选出来一个指标$$d(H_1, H_2)$$来描述两个直方图的匹配度
 - OpenCV使用[cv::compareHist](https://docs.opencv.org/4.1.2/d6/dc7/group__imgproc__hist.html#gaf4190090efa5c47cb367cf97a9a519bd)进行直方图对比, 该方法还提供了4个不同的指标来描述直方图的匹配度。
     1. **Correlation (CV_COMP_CORREL)**
         $$

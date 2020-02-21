@@ -7,3 +7,7 @@
 * [图像顺滑处理](SmoothingImage/Smothing.md)
 * [图像的腐蚀和膨胀运算](ErodingAndDilating/Erod_Dilate.md)
 * [其他的图像形态学运算](MoreMorphologyTransformations/Morphology.md)
+* [仿射变换](AffineTransformations/AffineTransformations.md)
+* [直方图均衡化](HistogramEqualization/HistogramEqualization.md)
+* [直方图计算](HistogramCalculation/HistogramCalculation.md)
+* [直方图对比](HistogramComparison/HistogramComparison.md)
