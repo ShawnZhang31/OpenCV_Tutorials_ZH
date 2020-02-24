@@ -25,11 +25,18 @@
         "code",
         "back-to-top-button",
         "expandable-chapters-small",
-        "insert-logo"],
+        "insert-logo",
+        "page-toc-button"],
 
     "pluginsConfig": {
         "mathjax":{
             "forceSVG": true
+        },
+        "pluginsConfig": {
+            "page-toc-button": {
+                "maxTocDepth": 3,
+                "minTocSize": 2
+               }
         },
         "tbfed-pagefooter":{
             "copyright":"Copyright &copy 守着瓜的猹 2020",
@@ -42,8 +49,8 @@
         "donate": {
             "wechat": "https://shawnzhang31.com/topic/opencvtutorial/res/donate_wechat.png",
             "alipay": "https://shawnzhang31.com/topic/opencvtutorial/res/donate_alipay.png",
-            "title": "",
-            "button": "赏一杯咖啡喝吧",
+            "title": "赏一杯咖啡吧",
+            "button": "打赏",
             "alipayText": "支付宝打赏",
             "wechatText": "微信打赏"
         },

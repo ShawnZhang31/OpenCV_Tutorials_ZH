@@ -12,7 +12,7 @@
 <img src="./res/pastimg-2020-02-21-09-28-06.png" />
 </div>  
 
-## 什么事直方图均衡化
+## 什么是直方图均衡化
 - 直方图均衡化是利用图像的直方图对图像的对比度进行调整的方法([维基百科](https://zh.wikipedia.org/wiki/%E7%9B%B4%E6%96%B9%E5%9B%BE%E5%9D%87%E8%A1%A1%E5%8C%96))。
 - 上图的直方图可以看出图像的像素强度集中于与中间，而直方图均衡化就是将上图中的这个区域变大。下图中，绿色圆圈内的像素的强度较小，进行直方图均衡化处理之后的直方图如中间的图像所示，直方图均衡化处理之后的图像如右侧的图像所示。
 <div align="center">
@@ -34,6 +34,43 @@ $$
 $$
     equalized(x,y)=H'(src(x,y))
 $$
+
+## CLAHE(Contrast Limited Adaptive Histogram Equalization)
+使用`cv::equalizeHist`进行直方图均衡化，将在全部的图像上进行直方图均衡化。在很多的应用过程中，这并不是一个好方法。例如，下面的图片表示对图像进行直方图均衡化的一个示例：  
+<div align="center">
+    <img src="./res/pastimg-2020-02-24-11-23-41.png" />
+</div>  
+从上面的图像可以看出，的确较暗区域的亮度的确提升了，可以与原图相比，石膏像的脸部的区域由于太亮了，已经丢失了许多的信息。  
+要结果这个问题，在CLAHE算法提出之前，有学者提出了AHE(Adaptive Histogram Equalization)自适应直方图均衡算法，但是AHE方法依然存在底噪的问题。使用CLAHE方法对上面的图像进行处理:  
+
+- C++代码
+
+```c++
+Mat img = imread("tsukuba_l.png",0)
+# 创建一个CLAHE对象 (参数可选).
+Ptr<CLAHE> clahe = createCLAHE(2.0,Size(8, 8));
+clahe->apply(img, img);
+imwrite("clahe_2.jpg",img)
+```
+
+- Python代码
+
+```py
+import numpy as np
+import cv2 as cv
+img = cv.imread('tsukuba_l.png',0)
+# 创建一个CLAHE对象 (参数可选).
+clahe = cv.createCLAHE(clipLimit=2.0, tileGridSize=(8,8))
+cl1 = clahe.apply(img)
+cv.imwrite('clahe_2.jpg',cl1)
+```
+
+处理之后的图片如下所示:  
+<div align="center">
+    <p>CLAHE</p>
+    <img src="./res/pastimg-2020-02-24-11-41-39.png" />
+</div>  
+
 
 ## 演示代码
 - 代码概要
