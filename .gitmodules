@@ -1,0 +1,3 @@
+[submodule "ProjectsCpp"]
+	path = ProjectsCpp
+	url = git@e.coding.net:panxsoft/OpenCVOfficeTutorials/ProjectsCpp.git

@@ -12,6 +12,7 @@
     * [直方图均衡化](ImageProcessing/HistogramEqualization/HistogramEqualization.md)
     * [直方图计算](ImageProcessing/HistogramCalculation/HistogramCalculation.md)
     * [直方图对比](ImageProcessing/HistogramComparison/HistogramComparison.md)
+    * [图像梯度](ImageProcessing/ImageGradients/ImageGradients.md)
     * [Sobel导数](ImageProcessing/SobelDerivatives/SobelDerivatives.md)
 * [GUI和多媒体模块](HighGUI_Media/README.md)
 
