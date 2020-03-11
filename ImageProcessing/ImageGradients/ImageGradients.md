@@ -12,7 +12,7 @@ $$
             \end{bmatrix}
 $$
 
-## 实例代码
+## 示例代码
 ```py
 import numpy as np
 import cv2 as cv
@@ -31,6 +31,41 @@ plt.subplot(2,2,4),plt.imshow(sobely,cmap = 'gray')
 plt.title('Sobel Y'), plt.xticks([]), plt.yticks([])
 plt.show()
 ```  
+
+<div style="text-align: center">
+    <img src=".ImageGradients_images/66f8f4cb.png" width="61.8%" alt="">
+    <h6>images</h6>
+</div>
+
+## 需要注意的事情
+在上面的例子中，输出图像的深度是的`CV_8U`(np.uint8)。但这里有一个小bug， 从黑色到白色变化的区域的梯度是正值，而从白色到黑色过渡的区域的斜率是负值，因此当把数据转换为np.unit8的时候，所有的负值将会变成0，这样就会丢失一些数据。   
+
+如果是检测边界，最好是的将输出数据的深度设置的高一点，比如`CV_16S`，`CV_64F`等, 在转换为`CV_8U`之前下取输出图像的绝对值。
+### 演示代码
+```python
+import numpy as np
+import cv2 as cv
+from matplotlib import pyplot as plt
+img = cv.imread('box.png',0)
+# Output dtype = cv.CV_8U
+sobelx8u = cv.Sobel(img,cv.CV_8U,1,0,ksize=5)
+# Output dtype = cv.CV_64F. Then take its absolute and convert to cv.CV_8U
+sobelx64f = cv.Sobel(img,cv.CV_64F,1,0,ksize=5)
+abs_sobel64f = np.absolute(sobelx64f)
+sobel_8u = np.uint8(abs_sobel64f)
+plt.subplot(1,3,1),plt.imshow(img,cmap = 'gray')
+plt.title('Original'), plt.xticks([]), plt.yticks([])
+plt.subplot(1,3,2),plt.imshow(sobelx8u,cmap = 'gray')
+plt.title('Sobel CV_8U'), plt.xticks([]), plt.yticks([])
+plt.subplot(1,3,3),plt.imshow(sobel_8u,cmap = 'gray')
+plt.title('Sobel abs(CV_64F)'), plt.xticks([]), plt.yticks([])
+plt.show()
+```
+
+<div style="text-align: center">
+    <img src=".ImageGradients_images/a70f036f.png" width="61.8%" alt="">
+    <h6>image</h6>
+</div>  
 
 
 
