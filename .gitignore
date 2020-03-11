@@ -2,3 +2,5 @@
 /_book
 /node_modules
 /.idea
+#c++的中间文件
+/src/ProjectsCpp/cmake-build-debug

@@ -26,7 +26,8 @@
         "back-to-top-button",
         "expandable-chapters-small",
         "insert-logo",
-        "page-toc-button"],
+        "page-toc-button",
+        "include-codeblock"],
 
     "pluginsConfig": {
         "mathjax":{

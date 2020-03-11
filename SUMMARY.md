@@ -2,6 +2,7 @@
 
 * [说明](README.md)
 * [核心功能模块](CoreModule/README.md)
+    * [离散傅里叶变换(DFT)](CoreModule/DiscreteFourierTransform/DiscreteFourierTransform.md)
 * [图像处理模块](ImageProcessing/README.md)
     * [基本的绘图操作](ImageProcessing/BasicDrawing/drawing.md)
     * [随机生成器和文本](ImageProcessing/RandomGeneratorAndText/random_text.md)
