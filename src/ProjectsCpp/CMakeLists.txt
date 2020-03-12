@@ -30,3 +30,5 @@ include_directories(${Python3_NumPy_INCLUDE_DIRS})
 #message(${Python3_LIBRARIES})
 # 核心模块的内容
 add_subdirectory(CoreFunctions)
+# photo模块
+add_subdirectory(PhotoModule)

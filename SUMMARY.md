@@ -15,5 +15,7 @@
     * [直方图对比](ImageProcessing/HistogramComparison/HistogramComparison.md)
     * [图像梯度](ImageProcessing/ImageGradients/ImageGradients.md)
     * [Sobel导数](ImageProcessing/SobelDerivatives/SobelDerivatives.md)
+* [计算摄像学(photo)](PhotoModule/README.MD)
+    * [Seamless Cloning](PhotoModule/SeamlessCloning/SeamlessCloning.md)
 * [GUI和多媒体模块](HighGUI_Media/README.md)
 
