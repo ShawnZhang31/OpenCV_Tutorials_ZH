@@ -14,6 +14,8 @@ OpenCV用C++语言编写，它的主要接口也是C++语言，但是依然保�
 欢迎任何人一起编辑该文档。
 
 - [线上阅读](https://shawnzhang31.com/topic/opencvtutorial/)
+- [Github仓](https://github.com/ShawnZhang31/OpenCV_Tutorials_ZH.git)
+- [Coding仓](https://e.coding.net/panxsoft/OpenCVOfficeTutorials.git)
 
 ## 建议反馈
 - 在项目的issue中提交
