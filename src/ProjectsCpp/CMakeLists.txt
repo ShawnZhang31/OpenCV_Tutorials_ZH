@@ -3,7 +3,7 @@ CMAKE_MINIMUM_REQUIRED(VERSION 2.8.12)
 project(OfficeTutorials)
 
 # 配置OpenCV库
-set(OpenCV_DIR ~/works/libs/opencv/cv412/bin/lib/cmake/opencv4/)
+set(OpenCV_DIR ~/Works/libs/opencv-release/cv-412/install/lib/cmake/opencv4/)
 find_package(OpenCV REQUIRED)
 
 # 定义C++的版本
@@ -32,3 +32,5 @@ include_directories(${Python3_NumPy_INCLUDE_DIRS})
 add_subdirectory(CoreFunctions)
 # photo模块
 add_subdirectory(PhotoModule)
+# 2D特征模块
+add_subdirectory(2DFeatures)

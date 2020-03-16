@@ -18,4 +18,6 @@
 * [计算摄像学(photo)](PhotoModule/README.MD)
     * [Seamless Cloning](PhotoModule/SeamlessCloning/SeamlessCloning.md)
 * [GUI和多媒体模块](HighGUI_Media/README.md)
+* [2D图像特征模块](2DFeatureFrameworks/2DFeatureFrameworks.md)
+    * [Harris角点检测](2DFeatureFrameworks/HarrisConnerDetector/HarrisConnerDetector.md)
 
