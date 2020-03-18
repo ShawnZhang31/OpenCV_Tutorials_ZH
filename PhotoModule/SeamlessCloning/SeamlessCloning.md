@@ -3,7 +3,7 @@ Seamless Cloning是实现是基于Poisson Image Editing论文的思想实现的�
 Seamless Cloning的中心思想是在进行图片拷贝的时候拷贝的不是图像的像素值，而是图像的**梯度值(Gradients)**！  
 
 ## colorChange()
-[colorChange()](https://docs.opencv.org/4.1.2/df/da0/group__photo__clone.html#ga6684f35dc669ff6196a7c340dc73b98e)对同一副图像上不同版本的颜色进行无缝融合。  
+[colorChange()](https://docs.opencv.org/4.1.2/df/da0/group__photo__clone.htm#ga6684f35dc669ff6196a7c340dc73b98el)对同一副图像上不同版本的颜色进行无缝融合。
 
 C++
 ```c++
