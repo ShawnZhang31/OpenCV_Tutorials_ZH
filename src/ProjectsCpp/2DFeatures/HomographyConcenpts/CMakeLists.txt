@@ -4,3 +4,5 @@ MACRO(add_example name)
 ENDMACRO()
 
 add_example(2d_features_homography_pose_from_homography)
+
+add_example(2d_features_homography_perspective_correction)

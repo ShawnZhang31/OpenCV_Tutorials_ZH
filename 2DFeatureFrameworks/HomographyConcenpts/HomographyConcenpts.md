@@ -220,3 +220,38 @@ $$
 [import](../../src/ProjectsCpp/2DFeatures/HomographyConcenpts/2d_features_homography_pose_from_homography.cpp)
 
 ### 2. 透视矫正(Perspective correction)
+
+<div style="text-align: center">
+    <img src=".HomographyConcenpts_images/05404338.png" width="100%" alt=""/>
+    <h6>将左图变换到右图</h6>
+</div>  
+
+#### 2.1 检测角点
+
+```c++
+    Mat img1 = imread("Resources/left01.jpg", IMREAD_GRAYSCALE);
+    Mat img2 = imread("Resources/left02.jpg", IMREAD_GRAYSCALE);
+    imshow("image1", img1);
+    imshow("image2", img2);
+
+    // 检测角点
+    vector<Point2f> corners1, corners2;
+    Size patternSize(9,6);
+    bool found1 = findChessboardCorners(img1, patternSize, corners1);
+    bool found2 = findChessboardCorners(img2, patternSize, corners2);
+```
+#### 2.2 估算homography
+
+```c++
+// 计算homography变换矩阵
+    Mat H = findHomography(corners2, corners1);
+```
+
+#### 2.3 执行变换
+
+```c++
+    Mat img2_warp;
+    warpPerspective(image2Color, img2_warp, H, image1Color.size());
+    imshow("image2 warped", img2_warp);
+```
+
