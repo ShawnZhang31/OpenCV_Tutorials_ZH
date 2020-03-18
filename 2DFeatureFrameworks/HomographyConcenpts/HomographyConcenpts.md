@@ -255,3 +255,176 @@ $$
     imshow("image2 warped", img2_warp);
 ```
 
+### 3.使用相机位移计算Homography
+Homography设计两个平面的变换，而且可以揭示摄像机从第一个平面视角到第一个平面视角的位移。
+
+在CV中有了相机的内参和畸变参数，使用[`cv::solvePnP`](https://docs.opencv.org/4.1.2/d9/d0c/group__calib3d.html#ga549c2075fac14829ff4a58bc931c033d)可以计算出从3D对象点到图片上的2D投影点的相机的姿态位置。
+
+$$
+    \begin{aligned}
+        s \begin{bmatrix} u \\ v \\ 1 \end{bmatrix}
+        &= \begin{bmatrix} 
+                f_x & 0 & c_x \\ 
+                0 & f_y & c_y \\ 
+                0 & 0 & 1
+           \end{bmatrix}
+           \begin{bmatrix} 
+                r_{11} & r_{12} & r_{13} & t_x \\ 
+                r_{21} & r_{22} & r_{23} & t_y \\ 
+                r_{31} & r_{32} & r_{33} & t_z
+           \end{bmatrix}
+           \begin{bmatrix} X_o \\ Y_o \\ Z_o \\ 1 \end{bmatrix} \\
+        &= \mathbf{K} {}^c\mathbf{M}_o \begin{bmatrix} X_o \\ Y_o \\ Z_o \\ 1 \end{bmatrix}
+    \end{aligned}
+$$
+
+其中$$\mathbf{K}$$是相机的内参矩阵， $${}^c\mathbf{M}_o$$是相机的姿态，[`cv::solvePnP`](https://docs.opencv.org/4.1.2/d9/d0c/group__calib3d.html#ga549c2075fac14829ff4a58bc931c033d)输出的结果中`rvec`是Rodrigues旋转向量，`tvec`是移到向量。  
+
+可以使用homography的形式表示$${}^c\mathbf{M}_o$$，$${}^c\mathbf{M}_o$$将对象上的点变换到摄像机换面上的映射点。  
+
+$$
+    \begin{aligned}
+     \begin{bmatrix} X_c \\ Y_c \\ Z_c \\ 1 \end{bmatrix}
+            &= {}^c\mathbf{M}_o \begin{bmatrix} X_o \\ Y_o \\ Z_o \\ 1 \end{bmatrix} \\
+            &= \begin{bmatrix} 
+                  {}^c R_o & {}^c t_o \\ 
+                  0_{1 \times 3} & 1
+               \end{bmatrix}
+               \begin{bmatrix} X_o \\ Y_o \\ Z_o \\ 1 \end{bmatrix} \\
+            &= \begin{bmatrix} 
+                 r_{11} & r_{12} & r_{13} & t_x \\ 
+                 r_{21} & r_{22} & r_{23} & t_y \\ 
+                 r_{31} & r_{32} & r_{33} & t_z \\
+                 0 & 0 & 0 & 1 
+               \end{bmatrix}
+               \begin{bmatrix} X_o \\ Y_o \\ Z_o \\ 1 \end{bmatrix}
+     \end{aligned}
+$$
+
+如此从图像1到图像2上的点的变换可以通过矩阵相城简单完成：  
+- $${}^{c_1}\mathbf{M}_o$$代表相机位1的姿态
+- $${}^{c_2}\mathbf{M}_o$$代表相机位2的姿态
+
+那么将相机位1的3D点变换到相机位2的变换可以表示为： 
+$$
+    ^{c_2}\textrm{M}_{c_1} =  ^{c_2}\textrm{M}_{o} \cdot  ^{o}\textrm{M}_{c_1} =  ^{c_2}\textrm{M}_{o} \cdot  \left( ^{c_1}\textrm{M}_{o} \right )^{-1} = \begin{bmatrix} ^{c_2}\textrm{R}_{o} & ^{c_2}\textrm{t}_{o} \\ 0_{3 \times 1} & 1 \end{bmatrix} \cdot \begin{bmatrix} ^{c_1}\textrm{R}_{o}^T & -  ^{c_1}\textrm{R}_{o}^T \cdot  ^{c_1}\textrm{t}_{o} \\ 0_{1 \times 3} & 1 \end{bmatrix}
+$$
+
+#### 3.1计算出相机姿态
+
+```c++
+Mat img1 = imread("Resources/left01.jpg", IMREAD_GRAYSCALE);
+    Mat img2 = imread("Resources/left02.jpg", IMREAD_GRAYSCALE);
+    imshow("image1", img1);
+    imshow("image2", img2);
+
+    // 检测角点
+    vector<Point2f> corners1, corners2;
+    Size patternSize(9,6);
+    bool found1 = findChessboardCorners(img1, patternSize, corners1);
+    bool found2 = findChessboardCorners(img2, patternSize, corners2);
+
+    // 棋盘格各自大小
+    const float squareSize = 0.025f;
+    vector<Point3f> objectPoints;
+    calcChessboardCorners(patternSize, squareSize, objectPoints, CHESSBOARD);
+
+    //! [加载摄像机参数]
+    // 相机参数
+    string intrinsicsPath = "Resources/left_intrinsics.yml";
+    FileStorage fs(samples::findFile(intrinsicsPath), FileStorage::READ);
+    Mat cameraMatix, distCoeffs;
+    fs["camera_matrix"] >> cameraMatix;
+    fs["distortion_coefficients"] >> distCoeffs;
+    //! [加载摄像机参数]
+
+    Mat rvec1, tvec1; // image1相机的旋转向量和平移向量
+    solvePnP(objectPoints, corners1, cameraMatix, distCoeffs, rvec1, tvec1);
+    Mat rvec2, tvec2; // image2相机的旋转向量和平移向量
+    solvePnP(objectPoints, corners2, cameraMatix, distCoeffs, rvec2, tvec2);
+
+    // 绘制坐标轴
+    Mat image1Color, image2Color;
+    cvtColor(img1, image1Color, COLOR_GRAY2BGR);
+    cvtColor(img2, image2Color, COLOR_GRAY2BGR);
+    drawFrameAxes(image1Color, cameraMatix, distCoeffs, rvec1, tvec1, 2*squareSize);
+    drawFrameAxes(image2Color, cameraMatix, distCoeffs, rvec2, tvec2, 2*squareSize);
+    imshow("image1 axies", image1Color);
+    imshow("image2 axies", image2Color);
+```
+
+![相机姿态](.HomographyConcenpts_images/23a9e22b.png)
+
+#### 3.2根据上面的公式使用相机的姿态计算相机的位移
+```c++
+/**
+ * 计算从相机姿态2到姿态1的变换
+ * @param R1
+ * @param tvec1
+ * @param R2
+ * @param tvec2
+ * @param R_1to2
+ * @param tvec_1to2
+ */
+void computeC2MC1(const Mat &R1, const Mat &tvec1, const Mat &R2, const Mat &tvec2, Mat &R_1to2, Mat &tvec_1to2)
+{
+    R_1to2 = R2 * R1.t();
+    tvec_1to2 = R2 * (-R1.t() * tvec1) + tvec2;
+}
+```
+**从相机位移计算关于某个平面的homography**  
+
+<div style="text-align: center">
+    <img src=".HomographyConcenpts_images/6b32b107.png" width="100%" alt=""/>
+    <h6>By Homography-transl.svg: Per Rosengren derivative work: Appoose (Homography-transl.svg) [CC BY 3.0 (http://creativecommons.org/licenses/by/3.0)], via Wikimedia Commons</h6>
+</div>  
+
+上图中向量`n`是屏幕的法向量，`d`表示相机沿法线到平面的距离，则使用相机位移计算homography的方程是: 
+$$
+    ^{2}\textrm{H}_{1} = ^{2}\textrm{R}_{1} - \frac{^{2}\textrm{t}_{1} \cdot n^T}{d}
+$$
+
+其中$$^{2}\textrm{H}_{1}$$将相位1拍摄的图像中的点映射到相位1拍摄的图像中对应的点的homography变换矩阵，$$^{2}\textrm{R}_{1} = ^{c_2}\textrm{R}_{o} \cdot ^{c_1}\textrm{R}_{o}^{T}$$代表两个相位的旋转变换向量，$$^{2}\textrm{t}_{1} = ^{c_2}\textrm{R}_{o} \cdot \left( - ^{c_1}\textrm{R}_{o}^{T} \cdot  ^{c_1}\textrm{t}_{o} \right ) +  ^{c_2}\textrm{t}_{o}$$表示两个相位的平移向量。 
+
+通常法向量`n`可是使用平面的两个非平行的向量的叉积计算。在本例中我们假设平面是一个水平平面，现在又知道的frame1的相机旋转向量，所以可以直接计算：
+
+```c++
+ Mat normal = (Mat_<double>(3,1) << 0, 0, 1);
+ Mat normal1 = R1*normal;
+```
+
+距离`d`可是使用法向量与一点到平面的一个向量的点积计算，或者可是直接使用平面方程的D系数:  
+
+```c++
+    Mat origin(3, 1, CV_64F, Scalar(0));
+    Mat origin1 = R1*origin + tvec1;
+    double d_inv1 = 1.0 / normal1.dot(origin1);
+```
+
+projective homography matrix $$\mathbf{G}$$ 可以使用 Euclidean homography $$\mathbf{H}$$ 结合 intrinsic matrix $$\mathbf{K}$$, 假设两个平面视图的摄像机是相同的:  
+$$
+\textbf{G} = \gamma \textbf{K} \textbf{H} \textbf{K}^{-1}
+$$
+
+```c++
+Mat computeHomography(const Mat &R_1to2, const Mat &tvec_1to2, const double d_inv, const Mat &normal)
+{
+    Mat homography = R_1to2 + d_inv * tvec_1to2*normal.t();
+    return homography;
+}
+```
+
+**未完，使用相机位移计算Homography和使用findHomography都可以，并且很难区分不同，以后完善这一点**
+
+### 4. homography矩阵分解
+使用[`cv::decomposeHomographyMat`](https://docs.opencv.org/4.1.2/d9/d0c/group__calib3d.html#ga7f60bdff78833d1e3fd6d9d0fd538d92)方法可以将homography矩阵分解为旋转矩阵、平移矩阵和平面的法向量。  
+
+对homography矩阵分解后获得了相机的位移， 如果知道相机的初始位置，就可以计算相机当前的位置，以及测试属于平面的3D对象点是否投影在相机的前面。
+
+### 5.使用旋转摄像机进行基本的全景拼接
+**注意:**
+> 此示例用于说明基于相机纯旋转运动进行图像拼接的概念，并且不适合应用于拼接全景图像应用。cv的[拼接模块](https://docs.opencv.org/4.1.2/d1/d46/group__stitching.html)提供了完整的流水线来拼接图像。
+
+单应变换仅适用于平面结构, 但是在旋转相机的情况下（围绕相机投影轴的纯旋转，没有平移），可以考虑是平面结构类型。
+
+
