@@ -21,4 +21,6 @@
 * [2D图像特征模块](2DFeatureFrameworks/2DFeatureFrameworks.md)
     * [Harris角点检测](2DFeatureFrameworks/HarrisConnerDetector/HarrisConnerDetector.md)
     * [Homography的基本概念](2DFeatureFrameworks/HomographyConcenpts/HomographyConcenpts.md)
+* [图像拼接(Image Stiching)](ImageStiching/ImageStiching.md)
+    * [Sticher类使用](ImageStiching/Sticher/Sticher.md)
 

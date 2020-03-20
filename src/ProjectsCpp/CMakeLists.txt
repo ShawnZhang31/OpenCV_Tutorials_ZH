@@ -34,3 +34,5 @@ add_subdirectory(CoreFunctions)
 add_subdirectory(PhotoModule)
 # 2D特征模块
 add_subdirectory(2DFeatures)
+# 图像拼接
+add_subdirectory(ImageStiching)
