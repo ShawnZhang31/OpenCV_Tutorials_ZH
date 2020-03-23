@@ -20,7 +20,6 @@
         "github",
         "-lunr", "-search", "search-plus",
         "local-video",
-        "donate",
         "-sharing", "sharing-plus",
         "code",
         "back-to-top-button",

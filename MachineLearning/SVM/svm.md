@@ -57,7 +57,7 @@ $$
 
 最终最大化$$M$$的问题转化为了最小化$$L(\beta)$$的问题:  
 $$
-\min_{\beta, \beta_{0}} L(\beta) = \frac{1}{2}||\beta||^{2} \text{ subject to } y_{i}(\beta^{T} x_{i} + \beta_{0}) \geq 1 \text{ } \forall i,
+\min_{\beta, \beta_{0}} L(\beta) = \frac{1}{2}||\beta||^{2} \text{ subject to } y_{i}(\beta^{T} x_{i} + \beta_{0}) \geq 1 \text{ } \forall i
 $$
 
 其中$$y_i$$表示训练数据的标签
