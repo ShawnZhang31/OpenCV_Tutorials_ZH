@@ -21,6 +21,10 @@
 * [2D图像特征模块](2DFeatureFrameworks/2DFeatureFrameworks.md)
     * [Harris角点检测](2DFeatureFrameworks/HarrisConnerDetector/HarrisConnerDetector.md)
     * [Homography的基本概念](2DFeatureFrameworks/HomographyConcenpts/HomographyConcenpts.md)
+* [机器学习模块](MachineLearning/MachineLearn.md)
+    * [支持向量机(SVM)](MachineLearning/SVM/svm.md)
+    * [支持向量机用于非线性可分离数据](MachineLearning/SVM_for_Non-Linearly_Sperable_Data/SVM_for_Non-Linearly_Sperable_Data.md)
+    * [主成分分析(PCA)](MachineLearning/PricipalComponentAnalusis/PricipalComponentAnalusis.md)
 * [图像拼接(Image Stiching)](ImageStiching/ImageStiching.md)
     * [Sticher类使用](ImageStiching/Sticher/Sticher.md)
 

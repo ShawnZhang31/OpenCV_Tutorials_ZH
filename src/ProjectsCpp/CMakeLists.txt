@@ -36,3 +36,5 @@ add_subdirectory(PhotoModule)
 add_subdirectory(2DFeatures)
 # 图像拼接
 add_subdirectory(ImageStiching)
+# 机器学习模块
+add_subdirectory(MachineLearning)
