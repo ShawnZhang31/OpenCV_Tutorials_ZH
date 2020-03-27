@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CMakeRunConfigurationManager" shouldGenerate="true" shouldDeleteObsolete="true">
+    <generated />
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="Debug" CONFIG_NAME="Debug" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="12adba7b-0d7e-4186-ba44-21192ea6a824" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../../ObjectDetection/CascadeClassifier/.cascade_classifier_images/3d79c507.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../ObjectDetection/CascadeClassifier/.cascade_classifier_images/a332c8fb.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ObjectDetection/CMakeLists.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ObjectDetection/OD_cascade_classifier.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ObjectDetection/Resources/haarcascade_eye_tree_eyeglasses.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ObjectDetection/Resources/haarcascade_frontalface_alt.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../SUMMARY.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../SUMMARY.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectId" id="1ZgnL4Na8H8OSbjc9tDy66eQnQx" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="12adba7b-0d7e-4186-ba44-21192ea6a824" name="Default Changelist" comment="" />
+      <created>1585269545864</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1585269545864</updated>
+      <workItem from="1585269547454" duration="974000" />
+    </task>
+    <servers />
+  </component>
+</project>

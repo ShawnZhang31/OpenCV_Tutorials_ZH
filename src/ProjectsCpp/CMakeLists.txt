@@ -38,3 +38,5 @@ add_subdirectory(2DFeatures)
 add_subdirectory(ImageStiching)
 # 机器学习模块
 add_subdirectory(MachineLearning)
+# 对象检测
+add_subdirectory(ObjectDetection)
