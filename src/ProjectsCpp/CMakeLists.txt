@@ -40,3 +40,5 @@ add_subdirectory(ImageStiching)
 add_subdirectory(MachineLearning)
 # 对象检测
 add_subdirectory(ObjectDetection)
+# 视频分析
+add_subdirectory(VideoAnalysis)
