@@ -70,6 +70,9 @@ if( !face_cascade.load( face_cascade_name ) )
 ## 演示代码
 [代码](https://docs.opencv.org/4.1.2/db/d28/tutorial_cascade_classifier.html)
 
+[import](../../src/ProjectsCpp/ObjectDetection/OD_cascade_classifier.cpp)
+
+
 
 
 
